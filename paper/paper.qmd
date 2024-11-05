@@ -1,107 +1,34 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
-author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: [https://github.com/RohanAlexander/starter_folder](https://github.com/RohanAlexander/starter_folder)."
+title: "Forecasting the Winner of the Upcoming US Presidential Election"
+author: "Yanzun Jiang, Chang Tong, Wenxin Xu"
+thanks: "Code and data are available at: [https://github.com/Stary54264/US_Election_Prediction](https://github.com/Stary54264/US_Election_Prediction)."
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "In this study, we develop a model to predict the outcome of the upcoming U.S. presidential election in 2024 using a simulated dataset representing U.S. voters. The paper uses polling data and statistical programming in R to generate and analyze voter opinions. The findings reveal key demographic trends that influence voting preferences, including age, gender, education, and employment status. This analysis is important because it helps us understand the underlying factors that drive voter behavior and thus contributes to a clear view of the dynamics of democratic elections. "
 format: pdf
 number-sections: true
 bibliography: references.bib
 ---
 
-```{r}
-#| include: false
-#| warning: false
-#| message: false
-
-library(tidyverse)
-library(palmerpenguins)
-```
-
-
 # Introduction
 
-Overview paragraph
+Predicting election results is an important task that helps people understand the direction of public choice and predict the future political landscape. The latest poll data from America's Political Pulse shows that this election is a competition between major candidates including Donald Trump, Kamala Harris and other major contenders, and the final results of the US election also affect the landscape around the world. In this paper, we aim to promote this understanding by developing a predictive model using polling data.
 
-Estimand paragraph
+The main focus of this paper is to use a simulated dataset representing American voters, using data from polling methods. The model is built using statistical programming in R to predict the results of the upcoming US presidential election. The quantities estimated in this analysis depend on demographic predictors such as age, gender, education, race, employment status, and state of residence. To this end, the dataset was organized and adjusted, and rigorous testing was performed to ensure data quality. Our analysis reveals key demographic trends that affect voting behavior, such as (to be updated)
 
-Results paragraph
-
-Why it matters paragraph
-
-Telegraphing paragraph: The remainder of this paper is structured as follows. @sec-data....
-
-
-
+The structure of this paper is as follows: @sec-data We first outline the data collection and cleaning process and describe the results and predictors used in the analysis. @sec-model introduces the predictive models and discusses the reasons for choosing them for election results prediction. @sec-result then presents the main findings, displays the results, and discusses the implications of our findings. Finally, @sec-discussion explains the results, highlights important trends and predictions, and concludes with a discussion of the reliability of the predictions and potential limitations of the model. These findings are important because they provide insights into the factors that influence voter decisions and enable us to better predict election outcomes.
 
 
 
 # Data {#sec-data}
 
 ## Overview
+This article uses the statistical programming language R [@citeR] to simulate and analyze data. The dataset used in this analysis comes from the polling method, specifically America's Political Pulse to predict the results of the upcoming US presidential election. Following the practice of @tellingstories, we consider the robustness of aggregate polling data to effectively measure voter opinion at the macro level. 
 
-We use the statistical programming language R [@citeR].... Our data [@shelter].... Following @tellingstories, we consider...
+This analysis is based on a simulated dataset with 500 observations on 7 variables. The data is specially collated to provide a representation of the US electorate. For quality assurance, performed multiple integrity tests to verify the properties of the dataset, such as the number of rows and columns, unique values, and missing data. 
 
-Overview text
-
+ 
 ## Measurement
-	
-Some paragraphs about how we go from a phenomena in the world to an entry in the dataset.
-
-## Outcome variables
-
-Add graphs, tables and text. Use sub-sub-headings for each outcome variable or update the subheading to be singular.
-
-
-
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
-
-```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
-#| echo: false
-
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
-```
-
-Talk more about it.
-
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
-
-```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
-#| echo: false
-#| warning: false
-#| message: false
-
-analysis_data <- read_csv(here::here("data/02-analysis_data/analysis_data.csv"))
-
-analysis_data |> 
-  ggplot(aes(x = width, y = length)) +
-  geom_point(alpha = 0.8) +
-  theme_minimal() +
-  labs(x = "Wing width (mm)",
-       y = "Wing length (mm)")
-```
-
-Talk way more about it. 
-
-## Predictor variables
-
-Add graphs, tables and text.
-
-Use sub-sub-headings for each outcome variable and feel free to combine a few into one if they go together naturally.
 
 
 
@@ -110,144 +37,144 @@ Use sub-sub-headings for each outcome variable and feel free to combine a few in
 
 
 
-# Model
-
-The goal of our modelling strategy is twofold. Firstly,...
-
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
-
-## Model set-up
-
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
-
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
-
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
 
 
-### Model justification
-
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
-
-
-# Results
-
-Our results are summarized in @tbl-modelresults.
-
-```{r}
-#| echo: false
-#| eval: true
-#| warning: false
-#| message: false
-
-library(rstanarm)
-
-first_model <-
-  readRDS(file = here::here("models/first_model.rds"))
-```
-
-```{r}
-#| echo: false
-#| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
-#| warning: false
-
-modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  ),
-  statistic = "mad",
-  fmt = 2
-)
-```
-
-
-
-
-# Discussion
-
-## First discussion point {#sec-first-point}
-
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
-
-## Second discussion point
-
-Please don't use these as sub-heading labels - change them to be what your point actually is.
-
-## Third discussion point
-
-## Weaknesses and next steps
-
-Weaknesses and next steps should also be included.
 
 \newpage
 
 \appendix
 
-# Appendix {-}
+# Appendix {#sec-appendix}
+
+## America’s Political Pulse Methodology Analysis {#sec-appendix-pollster}
+
+### Discussion of Methodology and Key Features
+
+The target population for this survey includes American voters who have specific views on political issues, such as partisan hatred and violations of democratic norms. The sampling frame may be based on paid survey respondents on the YouGov survey platform. This survey involved 70,825 unique respondents and a total of 115,000 responses.
+
+The survey uses an online panel provided by YouGov, and participants are paid for their responses, which is non-probability sampling. This method of recruitment is efficient and allows for a continuous flow of respondents. However, online recruitment allows for a large sample to be obtained quickly but may introduce self-selection bias. Those who are incentivized by payment and have access to the Internet are more likely to participate, which may limit representativeness.
+
+There is no explicit mention of how non-response is managed in this survey. Without proper handling of non-response, the survey results may be skewed. This means that certain perspectives might be over represented, while others could be underrepresented, impacting the overall reliability and accuracy of the findings.
+
+### Strengths and Weaknesses
+
+Large, ongoing sample size with over 70,000 unique respondents enhances reliability. Weekly data collection allows for trend analysis over a significant period. Publicly available dataset increases transparency and opportunities for independent analysis.
+
+The primary drawback is the lack of representativeness. The findings may not generalize well to the entire population, as participants self-select into the survey and may not reflect key population segments. Lack of clarity on how non-response is addressed means that there could be gaps in representativeness, especially if certain groups consistently opt out.
 
 
-# Additional data details
+---
 
-# Model details {#sec-model-details}
+## Appendix 2 - Idealized Methodology and Survey {#sec-appendix-survey}
 
-## Posterior predictive check
+This appendix outlines an idealized methodology and survey design to forecast the upcoming U.S. presidential election within a budget of $100,000. The approach involves detailed planning for sampling, recruitment, data validation, poll aggregation, and the use of survey platforms. The survey aims for high representativeness and reliability while remaining within the specified budget.
 
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
+### Sampling Methodology
 
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
+Stratified random sampling will be used to ensure accurate representation of different population groups. The sample will be stratified according to key demographics such as age, gender, ethnicity, income, geographic region, and education level.
 
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
+**Target Sample Size:** Approximately 5,000 respondents.
 
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
+### Respondent Recruitment
 
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
-```
+Respondents will be recruited using a combination of online panels and non-web-based methods.
 
-## Diagnostics
+1. Reputable panel providers such as YouGov will be contracted to provide a diverse panel of respondents, accounting for 60% of the sample.
+2. The remaining 40% will be recruited using SMS and offline invitations to ensure that respondents without internet access are included, helping to minimize bias that may arise from exclusively online recruitment.
 
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
+Respondents will be offered a small monetary incentive ($5 per participant) to complete the survey to encourage participation and minimize dropout rates.
 
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
+### Survey Platform
 
-```{r}
-#| echo: false
-#| eval: true
-#| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
+The survey will be implemented using Google Forms for its ease of use and low cost. However, data collected will be exported and processed using a secure database and analyzed in software like R or Python for advanced statistical modeling.
 
-plot(first_model, "trace")
+[Google Form Link](https://docs.google.com/forms/d/e/1FAIpQLSdWwJHIoC2DjXqbNKyYShAgxTRnvATkxPWdydexBBEKGySMEA/viewform?usp=sf_link)
 
-plot(first_model, "rhat")
-```
+### Survey Questions for U.S. Presidential Election Forecast
+
+Thank you for taking the time to participate in this survey regarding the upcoming U.S. Presidential Election. This survey aims to understand voter preferences as we approach the election.
+
+Your responses will contribute to a larger effort to forecast the election results and to gain insight into voter engagement across different demographic groups.
+
+All responses are completely anonymous, and your privacy is of utmost importance. The survey should take approximately 3 minutes to complete. 
+
+
+Your participation is entirely voluntary, and you can choose to stop at any time. We greatly appreciate your time and honest input. 
+
+**Survey Questions:**
+- **Are you registered to vote in the upcoming presidential election?**  
+  - Yes
+  - No
+
+- **If the election were held today, which candidate would you most likely vote for?**  
+  - Democrat
+  - Republican
+  - Third-Party Candidate
+  - Not Planning to Vote
+  - Undecided
+
+- **How certain are you about your choice?**  
+  - Very Certain
+  - Somewhat Certain
+  - Not Very Certain
+  - Not Certain at All
+
+- **What is your gender?**  
+  - Male
+  - Female
+  - Non-binary/Other
+  - Prefer not to say
+
+- **What is your race or ethnicity?**  
+  - White/Caucasian
+  - Black/African American
+  - Hispanic/Latino
+  - Asian
+  - Native American/Indigenous
+  - Other
+  - Prefer not to say
+
+- **What is your age group?**  
+  - 18-24
+  - 25-34
+  - 35-44
+  - 45-54
+  - 55-64
+  - 65 and above
+
+- **What is the highest level of education you have completed?**  
+  - High School Diploma or Equivalent
+  - College
+  - Bachelor's Degree
+  - Graduate or Professional Degree
+  - Other
+
+- **Which political party do you most identify with?**  
+  - Democratic Party
+  - Republican Party
+  - Independent
+  - Other/None
+
+- **Do you think the current voting system is fair and secure?**  
+  - Strongly Agree
+  - Agree
+  - Neutral
+  - Disagree
+  - Strongly Disagree
+
+### Data Validation
+
+IP addresses and contact information will be checked to identify and remove duplicate responses. Once the data is collected, weighting adjustments will be applied to ensure that the sample matches U.S. population demographics according to Census data.
+
+### Budget Allocation
+
+The budget of $100,000 will be allocated as follows:
+- Physical and Online Recruitment: $30,000
+- Respondent Incentives: $30,000
+- Data Collection & Validation: $10,000
+- Statistical Consulting/Data Analysis: $20,000
+- Other (Unforeseen Expenses): $10,000
+
 
 
 
@@ -255,5 +182,3 @@ plot(first_model, "rhat")
 
 
 # References
-
-
